@@ -1,0 +1,53 @@
+﻿@model IEnumerable<E_Commerce_App.Models.Product>
+
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="card-group">
+
+@foreach (var item in Model) {
+
+
+        <div class="card" style="width: 18rem;">
+        <img src=" @item.ProductImage" alt="" width="100" class="img-fluid  mb-3 img-thumbnail shadow-sm">  <div class="card-body">
+    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <h5 class="card-title"> @Html.DisplayFor(modelItem => item.price)<h5>
+         <p>@Html.DisplayFor(modelItem => item.stock)</p>
+  </div>
+  
+   <br>
+            <div>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+                </a>
+                <a asp-action="Details" asp-route-id="@item.Id"class="btn btn-success">
+                    <i class="bi bi-info"></i>
+                    Details
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-dark">
+                    <i class="bi bi-x"></i>
+                    Delete
+                </a>
+                  <a asp-action="AddProductToCart" asp-route-id="@item.Id" class="btn btn-dark">
+                    <i class="bi bi-x"></i>
+                    Add
+                </a>
+            </div>
+</div>
+
+  
+  
+}
+ </div>  
