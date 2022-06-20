@@ -1,0 +1,39 @@
+﻿
+@page
+@model E_Commerce_App.Pages.Categories.IndexModel
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+ @Html.DisplayNameFor(model => model.cat[0].CategoryName)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.cat[0].CategoryDescription) 
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in @Model.cat) {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryDescription)
+             </td>
+             <td>
+
+             <a href="/Products/IndexID?id=@item.Id"  class="btn btn-dark">
+                    <i class="bi bi-x"></i>
+                    Show
+                </a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
