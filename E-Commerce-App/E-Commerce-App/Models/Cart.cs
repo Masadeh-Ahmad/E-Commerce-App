@@ -1,4 +1,6 @@
-﻿namespace E_Commerce_App.Models
+﻿using System.Collections.Generic;
+
+namespace E_Commerce_App.Models
 {
     public class Cart
     {

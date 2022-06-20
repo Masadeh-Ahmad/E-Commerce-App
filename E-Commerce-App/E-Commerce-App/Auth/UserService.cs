@@ -3,6 +3,7 @@ using E_Commerce_App.Auth.Models;
 using E_Commerce_App.Auth.Models.DTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -30,11 +31,13 @@ namespace E_Commerce_App.Auth
             var result = await _userManager.CreateAsync(user, registerDto.Password);
             // Administrator
             // Editor
-            await _userManager.AddToRoleAsync(user, "Administrator");
+            
 
             if (result.Succeeded)
             {
-
+                IList<string> Roles = new List<string>();
+                Roles.Add("Editor");
+                await _userManager.AddToRolesAsync(user,Roles);
                 return new UserDto
                 {
                     Username = user.UserName,

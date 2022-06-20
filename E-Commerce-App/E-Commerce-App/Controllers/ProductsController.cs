@@ -52,7 +52,7 @@ namespace E_Commerce_App.Controllers
             return View(product);
         }
 
-        [Authorize(Policy = "Administrator")]
+        [Authorize(Roles = "Administrator")]
 
         // GET: Products/Create
         public IActionResult Create()
