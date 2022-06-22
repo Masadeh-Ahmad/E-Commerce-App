@@ -16,6 +16,7 @@ using Azure.Storage.Blobs.Models;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.Azure.Management.Storage.Models;
 using E_Commerce_App.Models.ViweModel;
+using E_Commerce_App.Auth.Interfaces;
 
 namespace E_Commerce_App.Controllers
 {
@@ -23,10 +24,13 @@ namespace E_Commerce_App.Controllers
     {
         private readonly IProducts _product;
         private readonly IConfiguration _Configuration;
-        public ProductsController(IProducts product, IConfiguration config)
+        private readonly IUserService _userService;
+
+        public ProductsController(IProducts product, IConfiguration config, IUserService userService)
         {
             _product = product;
             _Configuration = config;
+            _userService = userService;
         }
 
         // GET: Products
@@ -169,14 +173,17 @@ namespace E_Commerce_App.Controllers
             await _product.DeleteConfirmed(id);
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> AddProductToCart(int id)
+        public async Task<IActionResult> AddProductToCart(int id,string username)
         {
 
 
-            var product = await _product.Details(id);
+            //var product = await _product.Details(id);
+            //List < Product > products = new List<Product>();
+            //Cart cart = await _userService.getCart(username);
+            //products.Add(product);
 
-
-            Cartpro.Products.Add(product);
+            
+            //Cartpro.Products.Add(product);
             string urlAnterior = Request.Headers["Referer"].ToString();
             return Redirect(urlAnterior);
 

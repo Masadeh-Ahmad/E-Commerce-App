@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 
-namespace E_Commerce_App.Pages
+namespace E_Commerce_App.Pages.CartRaz
 {
     public class CartRazModel : PageModel
     {

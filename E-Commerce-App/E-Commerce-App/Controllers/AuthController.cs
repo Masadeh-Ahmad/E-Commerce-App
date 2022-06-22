@@ -41,6 +41,7 @@ namespace E_Commerce_App.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             return Redirect("/");
         }
     }

@@ -39,6 +39,7 @@ namespace E_Commerce_App
             services.AddTransient<ICategories, CategoriesService>();
             services.AddTransient<IProducts, ProductsService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IEmail, EmailService>();
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
@@ -74,9 +75,10 @@ namespace E_Commerce_App
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                
 
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+                endpoints.MapRazorPages();
             });
             app.UseStaticFiles();
             
