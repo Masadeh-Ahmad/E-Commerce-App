@@ -84,6 +84,21 @@ namespace E_Commerce_App.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("E_Commerce_App.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("userame")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cart");
+                });
+
             modelBuilder.Entity("E_Commerce_App.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
@@ -135,6 +150,9 @@ namespace E_Commerce_App.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CategorieId")
                         .HasColumnType("int");
 
@@ -157,6 +175,8 @@ namespace E_Commerce_App.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
 
                     b.HasIndex("CategorieId");
 
@@ -335,6 +355,10 @@ namespace E_Commerce_App.Migrations
 
             modelBuilder.Entity("E_Commerce_App.Models.Product", b =>
                 {
+                    b.HasOne("E_Commerce_App.Models.Cart", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CartId");
+
                     b.HasOne("E_Commerce_App.Models.Categorie", "Categorie")
                         .WithMany("Products")
                         .HasForeignKey("CategorieId");
@@ -391,6 +415,11 @@ namespace E_Commerce_App.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("E_Commerce_App.Models.Cart", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("E_Commerce_App.Models.Categorie", b =>

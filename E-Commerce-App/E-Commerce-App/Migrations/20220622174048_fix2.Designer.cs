@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce_App.Migrations
 {
     [DbContext(typeof(EcommercelDbContext))]
-    [Migration("20220608161512_new")]
-    partial class @new
+    [Migration("20220622174048_fix2")]
+    partial class fix2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,6 +86,21 @@ namespace E_Commerce_App.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("E_Commerce_App.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("userame")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cart");
+                });
+
             modelBuilder.Entity("E_Commerce_App.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
@@ -137,6 +152,9 @@ namespace E_Commerce_App.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CategorieId")
                         .HasColumnType("int");
 
@@ -149,6 +167,9 @@ namespace E_Commerce_App.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProductImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("price")
                         .HasColumnType("int");
 
@@ -156,6 +177,8 @@ namespace E_Commerce_App.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
 
                     b.HasIndex("CategorieId");
 
@@ -187,6 +210,22 @@ namespace E_Commerce_App.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "administrator",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "editor",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -211,6 +250,29 @@ namespace E_Commerce_App.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "permissions",
+                            ClaimValue = "Administrator",
+                            RoleId = "administrator"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "permissions",
+                            ClaimValue = "Editor",
+                            RoleId = "administrator"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "permissions",
+                            ClaimValue = "Editor",
+                            RoleId = "editor"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -295,6 +357,10 @@ namespace E_Commerce_App.Migrations
 
             modelBuilder.Entity("E_Commerce_App.Models.Product", b =>
                 {
+                    b.HasOne("E_Commerce_App.Models.Cart", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CartId");
+
                     b.HasOne("E_Commerce_App.Models.Categorie", "Categorie")
                         .WithMany("Products")
                         .HasForeignKey("CategorieId");
@@ -351,6 +417,11 @@ namespace E_Commerce_App.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("E_Commerce_App.Models.Cart", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("E_Commerce_App.Models.Categorie", b =>
