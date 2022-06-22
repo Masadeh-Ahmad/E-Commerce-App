@@ -177,13 +177,13 @@ namespace E_Commerce_App.Controllers
         {
 
 
-            //var product = await _product.Details(id);
+            var product = await _product.Details(id);
             //List < Product > products = new List<Product>();
             //Cart cart = await _userService.getCart(username);
             //products.Add(product);
 
             
-            //Cartpro.Products.Add(product);
+            Cartpro.Products.Add(product);
             string urlAnterior = Request.Headers["Referer"].ToString();
             return Redirect(urlAnterior);
 
