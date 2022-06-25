@@ -3,6 +3,7 @@ using E_Commerce_App.Auth.Models;
 using E_Commerce_App.Auth.Models.DTO;
 using E_Commerce_App.Data;
 using E_Commerce_App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
@@ -77,7 +78,8 @@ namespace E_Commerce_App.Auth
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByNameAsync(username);
-            
+                
+
                 
                 return new UserDto
                 {
@@ -90,11 +92,6 @@ namespace E_Commerce_App.Auth
             return null;
 
         }
-        public async Task<Cart> getCart(string username)
-        {
-
-            return  _context.Cart.FirstOrDefault(x => x.userame == username);
-        }
 
         public async Task<UserDto> GetUser(ClaimsPrincipal principal)
         {
@@ -103,6 +100,13 @@ namespace E_Commerce_App.Auth
             {
                 Username = user.UserName
             };
+        }
+        public async Task<string> GetEmail(ClaimsPrincipal principal)
+        {
+            var user = await _userManager.GetUserAsync(principal);
+
+            return user.Email;
+         
         }
     }
 }

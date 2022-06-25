@@ -17,6 +17,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.Azure.Management.Storage.Models;
 using E_Commerce_App.Models.ViweModel;
 using E_Commerce_App.Auth.Interfaces;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace E_Commerce_App.Controllers
 {
@@ -25,12 +26,14 @@ namespace E_Commerce_App.Controllers
         private readonly IProducts _product;
         private readonly IConfiguration _Configuration;
         private readonly IUserService _userService;
+        private readonly IMemoryCache _memoryCache;
 
-        public ProductsController(IProducts product, IConfiguration config, IUserService userService)
+        public ProductsController(IProducts product, IConfiguration config, IUserService userService, IMemoryCache memoryCache)
         {
             _product = product;
             _Configuration = config;
             _userService = userService;
+            _memoryCache = memoryCache;
         }
 
         // GET: Products

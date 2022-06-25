@@ -39,6 +39,7 @@ namespace E_Commerce_App
             services.AddTransient<ICategories, CategoriesService>();
             services.AddTransient<IProducts, ProductsService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IOrderService, OrderServices>();
             services.AddTransient<IEmail, EmailService>();
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -60,6 +61,9 @@ namespace E_Commerce_App
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +73,7 @@ namespace E_Commerce_App
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

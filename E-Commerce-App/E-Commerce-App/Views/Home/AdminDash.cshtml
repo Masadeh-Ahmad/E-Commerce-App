@@ -1,0 +1,20 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "AdminDash";
+}
+
+<h2>AdminDash</h2>
+
+<div class="container">
+    
+    <div >
+      <ul >
+         
+        <li ><a asp-controller="Home" asp-action="GetOrders" > orders </a></li>
+        <li ><a href="/Categories/Index" > Categories Management </a></li>
+        <li ><a href="/Products/Index" > Products Management </a></li>
+      </ul>
+    </div>
+  </div>
