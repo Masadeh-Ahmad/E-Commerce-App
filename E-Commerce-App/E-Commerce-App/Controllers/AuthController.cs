@@ -36,13 +36,15 @@ namespace E_Commerce_App.Controllers
 
         public async Task<ActionResult<UserDto>> Authenticate(LoginDTO login)
         {
+            HttpContext.Session.Clear();
             var user = await userService.Authenticate(login.UserName, login.Password);
             if (user == null)
-            {
+            {             
                 return RedirectToAction("Index");
             }
 
             return Redirect("/");
         }
+
     }
 }

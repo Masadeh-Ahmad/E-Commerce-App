@@ -15,6 +15,7 @@ namespace E_Commerce_App.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Categorie> Categories { get; set; }
         public DbSet<Cart> Cart { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public EcommercelDbContext(DbContextOptions options) : base(options)
         {
         }

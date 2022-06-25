@@ -4,14 +4,16 @@ using E_Commerce_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_Commerce_App.Migrations
 {
     [DbContext(typeof(EcommercelDbContext))]
-    partial class EcommercelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220625160125_fixOrder")]
+    partial class fixOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,9 +157,6 @@ namespace E_Commerce_App.Migrations
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
-
-                    b.Property<DateTime>("dateTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("username")
                         .HasColumnType("nvarchar(max)");
