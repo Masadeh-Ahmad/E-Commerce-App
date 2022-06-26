@@ -32,7 +32,7 @@
   
    <br>
             <div>
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                 {
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
                         <i class="bi bi-pencil-square"></i>
@@ -46,11 +46,12 @@
                     <i class="bi bi-info"></i>
                     Details
                 </a>
-             
-                  <a asp-controller="Cart" asp-action="addCart" asp-route-id="@item.Id" class="btn btn-dark">
-                    <i class="bi bi-x"></i>
+              @if (User.Identity.IsAuthenticated && User.IsInRole("Editor"))
+                {
+                    <a asp-controller="Cart" asp-action="addCart" asp-route-id="@item.Id" class="btn btn-dark">
+                        <i class="bi bi-x"></i>
                     Add
-                </a>
+                </a>}
             </div>
 </div>
 

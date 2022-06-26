@@ -45,6 +45,10 @@ namespace E_Commerce_App.Controllers
 
             return Redirect("/");
         }
-
+        public async Task<IActionResult> Logout()
+        {
+            await userService.Logout();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

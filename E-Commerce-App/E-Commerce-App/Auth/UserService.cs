@@ -47,7 +47,7 @@ namespace E_Commerce_App.Auth
             if (result.Succeeded)
             {
                 IList<string> Roles = new List<string>();
-                Roles.Add("Administrator");
+                Roles.Add("Editor");
                 await _userManager.AddToRolesAsync(user,Roles);
                 return new UserDto
                 {
@@ -107,6 +107,10 @@ namespace E_Commerce_App.Auth
 
             return user.Email;
          
+        }
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }

@@ -21,20 +21,41 @@
         <li class="nav-item active"><a href="/HOME/index" class="nav-link font-italic"> Home </a></li>
         <li class="nav-item active"><a href="/Categories/Index" class="nav-link font-italic"> Categories </a></li>
         <li class="nav-item active"><a href="/Products/Index" class="nav-link font-italic"> Products </a></li>
-        <li class="nav-item active">
-          <a asp-area=""
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Editor"))
+                    {
+                        <li class="nav-item active">
+                            <a asp-area=""
             asp-controller="Cart"
             asp-action="Index" 
             class="nav-link font-italic">My Cart [ @await Component.InvokeAsync("CartCount") ]
          </a>
-                        </li>
+                        </li>}
+               
 
-                <li class="nav-item active"><a href="/Auth/SignUp" class="nav-link font-italic"> SignUp</a></li>
-
-        <li class="nav-item active"><a href="/Auth/index" class="nav-link font-italic"> Login</a></li>
         <li class="nav-item active"><a href="/Home/Aboutus" class="nav-link font-italic"> About US</a></li>
-        <li class="nav-item active"><a href="/Home/sendEmail" class="nav-link font-italic"> Send Email</a></li>
-        Hello @User.Identity.Name
+        
+           
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        
+                       <li class="nav-item active"><a href="/Home/AdminDash" class="nav-link font-italic"> Admin Dashboard</a></li>
+                      
+                    }
+
+                      @if (!User.Identity.IsAuthenticated )
+                    {
+                        <li class="nav-item active"><a href="/Auth/SignUp" class="nav-link font-italic"> SignUp</a></li>
+                         <li class="nav-item active"><a href="/Auth/index" class="nav-link font-italic"> Login</a></li>
+                    }
+                    else{
+                         <li class="nav-item active"><a asp-controller="Auth" asp-action="Logout" class="nav-link font-italic"> Logout</a></li>
+                         <li class="nav-item active"> Hello  @User.Identity.Name</li>
+                                 
+
+                    }
+                          
+
       </ul>
     </div>
   </div>

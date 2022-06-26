@@ -41,6 +41,10 @@ namespace E_Commerce_App.Controllers
         {
             return View(await _product.Index());
         }
+        public async Task<IActionResult> getCat(int id)
+        {
+            return View(await _product.getCat(id));
+        }
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -64,7 +64,10 @@ namespace E_Commerce_App.Models.Services
         {
             return await _context.Products.ToListAsync();
         }
-
+        public async Task<List<Product>> getCat(int id)
+        {
+            return await _context.Products.Where(x=>x.CategoryId==id).ToListAsync();
+        }
         public bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
