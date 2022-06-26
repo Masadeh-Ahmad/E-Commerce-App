@@ -77,24 +77,29 @@ Lap 40
 
 1) Readme should contain the following:
 ======================================================
+
 A) Introduction to your E-Commerce site
  Rad Plant shop
-
 Find the perfect plants for your home  Beautiful plants that encourage you to get creative.
 A store that specializes in indoor and outdoor ornamental plants and their accessories
 Our plants are 100% organic, we don't use pesticides or harmful chemicals. But please don't eat them.
+
 ==================================================
 
 
 B)What is the product you are selling?  indoor and outdoor ornamental plants
+
 =====================================================
+
 C) What claims are you capturing? Why? 
    1. admin CRUD FOR ALL Model and see the orders that the Customer make it
    2. Editor see the categories and the products and make the order action
+   3. 
 ============================================
 
 D) Structure/Database Schema for your store DB (not identity)
  it OK
+ 
 ====
 E) Explanation of your DB Schema (mostly interested in your basket/order tables)
  1. Categorie :
@@ -115,6 +120,7 @@ E) Explanation of your DB Schema (mostly interested in your basket/order tables)
  3. Items (list of Products and their Quantity )
  4. Total 
  5. DateTime 
+ 6. 
 ================================================
 
 F) Link to your deployed website
