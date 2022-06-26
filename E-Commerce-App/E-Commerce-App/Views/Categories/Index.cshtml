@@ -8,7 +8,10 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 <table class="table">
     <thead>
@@ -16,9 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryDescription)
-            </th>
+         
             <th></th>
         </tr>
     </thead>
@@ -28,18 +29,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryDescription)
-            </td>
+         
 
             <td>
-                <a href="/Products/Index?id=@item.Id"  class="btn btn-dark">
+                <a href="/Products/getCat?id=@item.Id"  class="btn btn-dark">
                     <i class="bi bi-x"></i>
                     Show
                 </a>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+
+                {<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-dark">Edit</a>} |
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+
+                               { <a asp-action="Delete" asp-route-id="@item.Id"class="btn btn-dark">Delete</a>}
+                                
+                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-dark">
+                    <i class="bi bi-x"></i>
+                    Details
+                </a> 
+
             </td>
 
         </tr>

@@ -13,6 +13,8 @@ namespace E_Commerce_App.Auth.Interfaces
         public Task<UserDto> Authenticate(string username, string password);
         public Task<UserDto> GetUser(ClaimsPrincipal principal);
         public Task<string> GetEmail(ClaimsPrincipal principal);
+        public Task Logout();
+
 
     }
 }
