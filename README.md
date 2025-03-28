@@ -53,6 +53,4 @@ What you will do differently next sprint
 4. Mini Cart  and Cart
 5.Auth.NET/Checkout Process
 
-Do you need anything from the instructional staff?  NULL
-
 
