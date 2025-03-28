@@ -31,26 +31,4 @@ E-Commerce-App Selling plants
 ![](400.png)
 ![](500.png)
 ![](600.png)
-lap 30 
-
-A deployed link to your azure website
-https://e-commerce-app99.azurewebsites.net/
-
-
-Collaborate and come up with
-What you did well   
-1.  create an MVC project
-2. reflect all tables into the model and make the serves and InterFace and all controllers with injection
-3. add view Admin Dashboard 
-4. push the website into the Azure DevOps Process 
-5. use all frontEnd experiences to make the best design for the pages
-
-
-What you will do differently next sprint
-1. Registration Page
-2. Home Page
-3. Products Page
-4. Mini Cart  and Cart
-5.Auth.NET/Checkout Process
-
 
